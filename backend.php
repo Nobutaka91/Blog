@@ -1,3 +1,15 @@
+<?php 
+/*  
+ログインしているかどうかを
+セッションを使って判断するため、
+はじめにsession_start()関数でセッションを開始する。
+*/
+session_start();
+if (!isset($_SESSION['id'])){
+    header('Location: login.php');
+}
+?>
+
 <!doctype html>
 <html lang="ja">
 
