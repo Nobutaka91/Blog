@@ -9,7 +9,7 @@ class connect
     private $dbh;
 
     public function __construct(){
-        $dsn = "mysql:host=".self::HOST.":dbname=".self::DB_NAME.":charset=utf8mb4";
+        $dsn = "mysql:host=".self::HOST.";dbname=".self::DB_NAME.";charset=utf8mb4";
         try {
             //PDOのインスタンスをクラス変数に格納する
             $this->dbh = new PDO($dsn, self::USER, self::PASS);
@@ -31,3 +31,4 @@ class connect
         return $stmt;
     }
 }
+    
