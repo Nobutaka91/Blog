@@ -1,13 +1,6 @@
 <?php 
-/*  
-ログインしているかどうかを
-セッションを使って判断するため、
-はじめにsession_start()関数でセッションを開始する。
-*/
-session_start();
-if (!isset($_SESSION['id'])){
-    header('Location: login.php');
-}
+    //ログイン機能を読み込む
+    include 'lib/secure.php';
 ?>
 
 <!doctype html>
@@ -50,18 +43,8 @@ if (!isset($_SESSION['id'])){
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-red fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/blog/backend.php">My Blog Backend</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item"><a class="nav-link" href="#">記事を書く</a></li>
-                    <li class="nav-item"><a class="nav-link" href="logout.php">ログアウト</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- ナビの呼び出し -->
+    <?php include('lib/nav.php'); ?>
 
     <main class="container">
         <div class="row">
