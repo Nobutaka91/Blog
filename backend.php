@@ -7,7 +7,6 @@
 
     $queryArticle = new QueryArticle();
     $articles = $queryArticle->findAll();
-
 ?>
 
 <!doctype html>

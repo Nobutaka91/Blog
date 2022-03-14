@@ -20,6 +20,12 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
     $article = new Article();
     $article->setTitle($title);
     $article->setBody($body);
+    // is_uploaded_fileは実際にファイルがアップロードされたかを調べる関数
+    // $_FILES は 連想配列として使用する
+    // tepはtemporary(一次的な)の略
+    if (isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
+        $article->setFile($_FILES['image']);
+    }
     $article->save();
 
     header('Location: backend.php');

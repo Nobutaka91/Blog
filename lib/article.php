@@ -6,6 +6,7 @@ class Article
     private $body = null;
     private $category_id = null;
     private $filename = null;
+    private $file = null;
     private $created_at = null;
     private $updated_at = null;
 
@@ -36,6 +37,11 @@ class Article
         return $this->filename;
     }
 
+    public function getFile()
+    {
+        return $this->file;
+    }
+
     public function getCreated_At(){
         return $this->created_at;
     }
@@ -62,6 +68,10 @@ class Article
 
     public function setFilename($filename){
         $this->filename = $filename;
+    }
+
+    public function setFile($file){
+        $this->file = $file;
     }
 
     public function setCreatedAt($created_at){
