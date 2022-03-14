@@ -89,8 +89,8 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
             <div class="col-md-12">
 
                 <h1>記事の投稿</h1>
-
-                <form action="post.php" method="post">
+                <!-- ↓ formタグに enctype属性を追加する ↓ -->
+                <form action="post.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label class="form-label">タイトル</label>
                         <?php echo !empty($title_alert) ? '<div class="alert alert-danger">' . $title_alert . '</div>' : '' ?>
@@ -100,6 +100,11 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
                         <label class="form-label">本文</label>
                         <?php echo !empty($body_alert) ? '<div class="alert alert-danger">' . $body_alert . '</div>' : '' ?>
                         <textarea name="body" class="form-control" rows="10"><?php echo $body; ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <!-- ↓ 画像アップロード用のフォーム ↓ -->
+                        <label class="form-label">画像</label>
+                        <input type="file" name="image" class="form-control">
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">投稿する</button>
