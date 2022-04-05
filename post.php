@@ -9,7 +9,7 @@ include 'lib/article.php';
 
 $title = "";        // タイトル
 $body = "";         // 本文
-$title_alert = "";  // タイトルのエラー文言
+$title_alert = "";  //c タイトルのエラー文言
 $body_alert = "";   // 本文のエラー文言
 
 if (!empty($_POST['title']) && !empty($_POST['body'])) {

@@ -42,7 +42,7 @@ class Article
         return $this->file;
     }
 
-    public function getCreated_At(){
+    public function getCreatedAt(){
         return $this->created_at;
     }
 
