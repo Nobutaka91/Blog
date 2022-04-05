@@ -9,7 +9,7 @@ include 'lib/article.php';
 
 $title = "";        // タイトル
 $body = "";         // 本文
-$title_alert = "";  // タイトルのエラー文言
+$title_alert = "";  //c タイトルのエラー文言
 $body_alert = "";   // 本文のエラー文言
 
 if (!empty($_POST['title']) && !empty($_POST['body'])) {
@@ -20,6 +20,12 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
     $article = new Article();
     $article->setTitle($title);
     $article->setBody($body);
+    // is_uploaded_fileは実際にファイルがアップロードされたかを調べる関数
+    // $_FILES は 連想配列として使用する
+    // tepはtemporary(一次的な)の略
+    if (isset($_FILES['image']) && is_uploaded_file($_FILES['image']['tmp_name'])){
+        $article->setFile($_FILES['image']);
+    }
     $article->save();
 
     header('Location: backend.php');
@@ -89,8 +95,8 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
             <div class="col-md-12">
 
                 <h1>記事の投稿</h1>
-
-                <form action="post.php" method="post">
+                <!-- ↓ formタグに enctype属性を追加する ↓ -->
+                <form action="post.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label class="form-label">タイトル</label>
                         <?php echo !empty($title_alert) ? '<div class="alert alert-danger">' . $title_alert . '</div>' : '' ?>
@@ -100,6 +106,11 @@ if (!empty($_POST['title']) && !empty($_POST['body'])) {
                         <label class="form-label">本文</label>
                         <?php echo !empty($body_alert) ? '<div class="alert alert-danger">' . $body_alert . '</div>' : '' ?>
                         <textarea name="body" class="form-control" rows="10"><?php echo $body; ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <!-- ↓ 画像アップロード用のフォーム ↓ -->
+                        <label class="form-label">画像</label>
+                        <input type="file" name="image" class="form-control">
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">投稿する</button>
